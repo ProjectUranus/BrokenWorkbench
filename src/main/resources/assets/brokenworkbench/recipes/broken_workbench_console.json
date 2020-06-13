@@ -1,0 +1,25 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern":
+    [
+        "X#X",
+        "#Y#",
+        "X#X"
+    ],
+    "key":
+    {
+        "X": {
+            "type": "forge:ore_dict", "ore": "logWood"
+        },
+        "Y": {
+            "type": "forge:ore_dict", "ore": "blockIron"
+        },
+        "#": {
+            "type": "forge:ore_dict", "ore": "stickWood"
+        }
+    },
+    "result":
+    {
+        "item": "brokenworkbench:broken_workbench_console"
+    }
+}

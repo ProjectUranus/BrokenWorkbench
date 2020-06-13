@@ -1,6 +1,6 @@
 package com.projecturanus.brokenworkbench.common.container;
 
-import com.projecturanus.brokenworkbench.common.BitwiseUtils;
+import com.projecturanus.brokenworkbench.common.util.BitwiseUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;

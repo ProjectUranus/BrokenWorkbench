@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "brokenworkbench:broken_crafting_table" }
+    }
+}

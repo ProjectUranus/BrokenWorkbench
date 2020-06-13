@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,19 +42,17 @@ public class BrokenWorkbench {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        GameRegistry.registerTileEntity(TileEntityBrokenWorkbench.class, new ResourceLocation(MODID, "broken_workbench"));
+        GameRegistry.registerTileEntity(TileEntityBrokenWorkbench.class, new ResourceLocation(MODID, "broken_crafting_table"));
         NetworkRegistry.INSTANCE.registerGuiHandler(this, BWGuiHandler.INSTANCE);
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void setCustomModels(ModelRegistryEvent event) {
-        ModelLoader.setCustomStateMapper(BWObjects.BLOCK_BROKEN_WORKBENCH, block -> {
-            ModelResourceLocation resourceLocation = new ModelResourceLocation("minecraft:blocks/crafting_table");
-            return Collections.singletonMap(BWObjects.BLOCK_BROKEN_WORKBENCH.getDefaultState(), resourceLocation);
-        });
-
-        ModelLoader.setCustomModelResourceLocation(BWObjects.ITEM_BROKEN_WORKBENCH, 0, new ModelResourceLocation(new ResourceLocation("minecraft", "block/crafting_table"), "inventory"));
+        ModelLoader.setCustomStateMapper(BWObjects.BLOCK_BROKEN_WORKBENCH, block ->
+            Collections.singletonMap(block.getDefaultState(), new ModelResourceLocation(new ResourceLocation(MODID, "broken_crafting_table"), "")));
+        ModelLoader.setCustomModelResourceLocation(BWObjects.ITEM_BROKEN_WORKBENCH, 0, new ModelResourceLocation(new ResourceLocation(MODID, "broken_crafting_table"), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(BWObjects.ITEM_WORKBENCH_CONSOLE, 0, new ModelResourceLocation(new ResourceLocation(MODID, "broken_workbench_console"), "inventory"));
     }
 
     @SubscribeEvent
@@ -70,13 +69,16 @@ public class BrokenWorkbench {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(BWObjects.ITEM_BROKEN_WORKBENCH);
+        event.getRegistry().register(BWObjects.ITEM_WORKBENCH_CONSOLE);
     }
 
     @SubscribeEvent
     public static void removeRecipes(RegistryEvent.Register<IRecipe> event) {
         IForgeRegistryModifiable<IRecipe> registry = (IForgeRegistryModifiable<IRecipe>)event.getRegistry();
-        if (BWConfig.removeVanillaTableRecipe)
+        if (BWConfig.replaceVanillaTableRecipe) {
             registry.remove(new ResourceLocation("minecraft:crafting_table"));
+            registry.register(new ShapedOreRecipe(null, new ItemStack(Blocks.CRAFTING_TABLE), "X#X", "#Y#", "X#X", 'X', "plankWood", 'Y', "stickWood", '#', BWObjects.ITEM_WORKBENCH_CONSOLE).setRegistryName(new ResourceLocation("minecraft", "crafting_table")));
+        }
 
         if (BWConfig.removeAllTableRecipe) {
             // Copy an arraylist to avoid concurrent modification

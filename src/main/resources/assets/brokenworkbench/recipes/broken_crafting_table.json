@@ -1,0 +1,21 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern":
+    [
+        "XX",
+        "XX"
+    ],
+    "key":
+    {
+        "X": {
+            "type": "forge:ore_dict", "ore": "plankWood"
+        }
+    },
+    "result":
+    {
+        "item": "brokenworkbench:broken_crafting_table",
+        "nbt": {
+            "brokenSlots": -1
+        }
+    }
+}

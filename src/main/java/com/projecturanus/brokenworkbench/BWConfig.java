@@ -11,9 +11,9 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(modid = BrokenWorkbench.MODID, value = Side.CLIENT)
 public class BWConfig {
     @Config.Name("Remove Vanilla Crafting Table Recipe")
-    @Config.Comment("This setting removes minecraft:crafting_table from recipe registry, change if you have encountered problems")
+    @Config.Comment("This setting replaces minecraft:crafting_table with custom recipe, change if you have encountered problems")
     @Config.RequiresMcRestart
-    public static boolean removeVanillaTableRecipe = true;
+    public static boolean replaceVanillaTableRecipe = true;
 
     @Config.Name("Remove All Crafting Table Recipes")
     @Config.Comment("(DANGEROUS) This setting removes all recipes that produce a crafting table, turn on this settings to override CraftTweaker etc")

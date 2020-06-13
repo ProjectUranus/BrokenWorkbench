@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "brokenworkbench:blocks/crafting_table_front",
+        "down": "brokenworkbench:blocks/planks_oak",
+        "up": "brokenworkbench:blocks/crafting_table_top",
+        "north": "brokenworkbench:blocks/crafting_table_front",
+        "east": "brokenworkbench:blocks/crafting_table_side",
+        "south": "brokenworkbench:blocks/crafting_table_side",
+        "west": "brokenworkbench:blocks/crafting_table_front"
+    }
+}

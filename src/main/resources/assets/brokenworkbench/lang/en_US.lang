@@ -1,1 +1,5 @@
-tile.brokenworkbench.broken_workbench.name=Broken Crafting Table
+tile.brokenworkbench.broken_crafting_table.name=Broken Crafting Table
+tile.brokenworkbench.broken_workbench_console.name=Broken Console
+tile.brokenworkbench.broken_slots=Broken Slots: %s
+tile.brokenworkbench.broken_slots.unknown=Unknown
+tile.brokenworkbench.broken_slots.random=Randomized
